@@ -240,13 +240,14 @@ const quizData = [
   }
 ];
 
-const TIMER_MINUTES = 60; // 60-minute timer
+const TIMER_MINUTES = 60;
 
 export default function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [timeLeft, setTimeLeft] = useState(TIMER_MINUTES * 60);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isMobilePaletteOpen, setIsMobilePaletteOpen] = useState(false);
 
   // Timer Logic
   useEffect(() => {
@@ -260,7 +261,6 @@ export default function App() {
     return () => clearInterval(timerId);
   }, [timeLeft, isSubmitted]);
 
-  // Format Time
   const formatTime = (seconds) => {
     const m = Math.floor(seconds / 60).toString().padStart(2, '0');
     const s = (seconds % 60).toString().padStart(2, '0');
@@ -296,59 +296,53 @@ export default function App() {
     return score;
   };
 
-  // ---------------------------------------------------------
-  // RESULT SCREEN WITH EXPLANATIONS
-  // ---------------------------------------------------------
+  // Result Screen
   if (isSubmitted) {
     const score = calculateScore();
     const percentage = Math.round((score / quizData.length) * 100);
     
     return (
       <div className="min-h-screen bg-gray-50 flex flex-col font-sans p-4 sm:p-8">
-        <div className="max-w-5xl mx-auto w-full">
-          {/* Summary Card */}
-          <div className="bg-white rounded-2xl shadow-sm border-t-8 border-indigo-600 p-8 text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">Assessment Complete</h1>
-            <p className="text-gray-500 mb-6">Review your performance and explanations below.</p>
-            <div className="text-6xl font-extrabold text-indigo-600 mb-2">
-              {score} <span className="text-2xl text-gray-400">/ {quizData.length}</span>
+        <div className="max-w-4xl mx-auto w-full">
+          <div className="bg-white rounded-2xl shadow-sm border-t-8 border-indigo-600 p-6 sm:p-8 text-center mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Assessment Complete</h1>
+            <p className="text-gray-500 mb-6 text-sm sm:text-base">Review your performance and explanations below.</p>
+            <div className="text-5xl sm:text-6xl font-extrabold text-indigo-600 mb-2">
+              {score} <span className="text-xl sm:text-2xl text-gray-400">/ {quizData.length}</span>
             </div>
-            <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Score ({percentage}%)</p>
+            <p className="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Score ({percentage}%)</p>
             <button 
               onClick={() => window.location.reload()}
-              className="px-8 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-lg transition-colors"
+              className="w-full sm:w-auto px-8 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-lg transition-colors"
             >
               Retake Assessment
             </button>
           </div>
 
-          {/* Detailed Review Section */}
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 px-2">Detailed Review</h2>
-          <div className="space-y-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 px-2">Detailed Review</h2>
+          <div className="space-y-4 sm:space-y-6">
             {quizData.map((q, index) => {
               const userAnswer = selectedAnswers[index];
               const isCorrect = userAnswer === q.answer;
               const isUnanswered = userAnswer === undefined;
 
-              // Determine styling based on correctness
               let cardStyle = "border-gray-200 bg-white";
               if (isCorrect) cardStyle = "border-green-300 bg-green-50/30";
               else if (!isCorrect && !isUnanswered) cardStyle = "border-red-300 bg-red-50/30";
 
               return (
-                <div key={q.id} className={`p-6 rounded-2xl border shadow-sm ${cardStyle}`}>
-                  <div className="flex items-start gap-4">
-                    {/* Question Number Badge */}
-                    <div className="shrink-0 w-10 h-10 bg-white border shadow-sm rounded-full flex items-center justify-center font-bold text-gray-700">
+                <div key={q.id} className={`p-4 sm:p-6 rounded-2xl border shadow-sm ${cardStyle}`}>
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className="shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-white border shadow-sm rounded-full flex items-center justify-center font-bold text-gray-700 text-sm sm:text-base">
                       {index + 1}
                     </div>
                     
-                    <div className="flex-1">
-                      <p className="text-lg font-semibold text-gray-800 mb-4">{q.question}</p>
+                    <div className="flex-1 overflow-hidden">
+                      <p className="text-base sm:text-lg font-semibold text-gray-800 mb-3">{q.question}</p>
                       
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div className="p-3 rounded-lg bg-white border text-sm">
-                          <span className="block text-gray-400 font-semibold mb-1 uppercase text-xs">Your Answer</span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                        <div className="p-3 rounded-lg bg-white border text-xs sm:text-sm">
+                          <span className="block text-gray-400 font-semibold mb-1 uppercase text-[10px]">Your Answer</span>
                           {isUnanswered ? (
                             <span className="text-gray-500 italic">Not answered</span>
                           ) : (
@@ -358,14 +352,13 @@ export default function App() {
                           )}
                         </div>
                         
-                        <div className="p-3 rounded-lg bg-white border text-sm">
-                          <span className="block text-gray-400 font-semibold mb-1 uppercase text-xs">Correct Answer</span>
+                        <div className="p-3 rounded-lg bg-white border text-xs sm:text-sm">
+                          <span className="block text-gray-400 font-semibold mb-1 uppercase text-[10px]">Correct Answer</span>
                           <span className="font-semibold text-green-600">{q.answer}</span>
                         </div>
                       </div>
 
-                      {/* Explanation Block */}
-                      <div className="bg-indigo-50 border border-indigo-100 rounded-lg p-4 text-sm text-indigo-900">
+                      <div className="bg-indigo-50 border border-indigo-100 rounded-lg p-3 sm:p-4 text-xs sm:text-sm text-indigo-900">
                         <strong className="block mb-1 text-indigo-700">Explanation:</strong>
                         {q.explanation}
                       </div>
@@ -380,30 +373,55 @@ export default function App() {
     );
   }
 
-  // ---------------------------------------------------------
-  // QUIZ INTERFACE
-  // ---------------------------------------------------------
+  // Quiz Interface
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col font-sans">
-      <header className="bg-white shadow-sm px-6 py-4 flex justify-between items-center border-b border-gray-200">
-        <h1 className="text-xl font-bold text-gray-800">Online Assessment</h1>
-        <div className={`text-lg font-mono font-bold px-4 py-2 rounded-lg ${timeLeft < 300 ? 'bg-red-100 text-red-600' : 'bg-indigo-100 text-indigo-700'}`}>
-          ⏳ {formatTime(timeLeft)}
+      {/* Header */}
+      <header className="bg-white shadow-sm px-4 sm:px-6 py-4 flex justify-between items-center border-b border-gray-200">
+        <h1 className="text-lg sm:text-xl font-bold text-gray-800">Online Assessment</h1>
+        <div className="flex items-center gap-3">
+          <div className={`text-sm sm:text-lg font-mono font-bold px-3 py-1.5 rounded-lg ${timeLeft < 300 ? 'bg-red-100 text-red-600' : 'bg-indigo-100 text-indigo-700'}`}>
+            ⏳ {formatTime(timeLeft)}
+          </div>
+          {/* Mobile Palette Toggle Button */}
+          <button 
+            onClick={() => setIsMobilePaletteOpen(!isMobilePaletteOpen)}
+            className="md:hidden px-3 py-1.5 bg-gray-800 text-white text-xs font-semibold rounded-lg"
+          >
+            {isMobilePaletteOpen ? 'Close Palette' : 'Palette'}
+          </button>
         </div>
       </header>
 
-      <div className="flex flex-1 overflow-hidden max-w-7xl w-full mx-auto p-4 gap-6">
-        <aside className="w-80 bg-white rounded-xl shadow-sm border border-gray-200 p-4 flex flex-col hidden md:flex">
-          <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Question Palette</h2>
-          <div className="grid grid-cols-6 gap-2 overflow-y-auto pr-2 pb-4">
+      <div className="flex flex-1 max-w-7xl w-full mx-auto p-2 sm:p-4 gap-4 relative overflow-hidden">
+        
+        {/* Question Palette Sidebar (Responsive Drawer on Mobile) */}
+        <aside className={`
+          absolute md:relative z-20 top-0 left-0 h-full md:h-auto w-72 bg-white rounded-xl shadow-lg md:shadow-sm border border-gray-200 p-4 flex flex-col transition-transform duration-300
+          ${isMobilePaletteOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+        `}>
+          <div className="flex justify-between items-center mb-4 md:block">
+            <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wider">Question Palette</h2>
+            <button 
+              onClick={() => setIsMobilePaletteOpen(false)}
+              className="md:hidden text-gray-500 font-bold text-sm"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div className="grid grid-cols-5 gap-2 overflow-y-auto pr-1 pb-4 max-h-[50vh] md:max-h-none">
             {quizData.map((_, index) => {
               const isAnswered = selectedAnswers[index] !== undefined;
               const isCurrent = currentQuestion === index;
               return (
                 <button
                   key={index}
-                  onClick={() => setCurrentQuestion(index)}
-                  className={`h-9 w-9 rounded-full flex items-center justify-center text-xs font-semibold transition-all
+                  onClick={() => {
+                    setCurrentQuestion(index);
+                    setIsMobilePaletteOpen(false); // Close drawer on mobile selection
+                  }}
+                  className={`h-10 w-10 rounded-full flex items-center justify-center text-xs font-semibold transition-all
                     ${isCurrent ? 'ring-4 ring-indigo-300' : ''}
                     ${isAnswered ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}
                   `}
@@ -414,43 +432,45 @@ export default function App() {
             })}
           </div>
           
-          <div className="mt-auto pt-6 border-t border-gray-100">
-            <div className="flex flex-col gap-2 text-sm text-gray-600">
+          <div className="mt-auto pt-4 border-t border-gray-100">
+            <div className="flex flex-col gap-2 text-xs sm:text-sm text-gray-600 mb-4">
               <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-green-500"></span> Answered</div>
               <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-gray-200"></span> Unanswered</div>
             </div>
             <button 
               onClick={handleSubmit}
-              className="mt-6 w-full py-3 bg-red-500 hover:bg-red-600 text-white font-bold rounded-lg transition-colors shadow-sm hover:shadow"
+              className="w-full py-2.5 bg-red-500 hover:bg-red-600 text-white font-bold rounded-lg transition-colors shadow-sm"
             >
               Submit Test
             </button>
           </div>
         </aside>
 
-        <main className="flex-1 flex flex-col bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-10 relative">
-          <div className="flex justify-between items-center mb-8 border-b pb-4">
-            <h2 className="text-2xl font-bold text-gray-800">
-              Question {currentQuestion + 1} <span className="text-gray-400 text-lg">of {quizData.length}</span>
+        {/* Main Content - Question Area */}
+        <main className="flex-1 flex flex-col bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-8 relative">
+          
+          <div className="flex justify-between items-center mb-6 border-b pb-3">
+            <h2 className="text-lg sm:text-2xl font-bold text-gray-800">
+              Question {currentQuestion + 1} <span className="text-gray-400 text-sm sm:text-lg">of {quizData.length}</span>
             </h2>
             <button 
               onClick={handleClear}
-              className="text-sm text-gray-500 hover:text-red-500 transition-colors underline"
+              className="text-xs sm:text-sm text-gray-500 hover:text-red-500 transition-colors underline"
             >
               Clear Selection
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto pr-4">
-            <p className="text-xl text-gray-800 mb-8 leading-relaxed font-medium">
+          <div className="flex-1 overflow-y-auto pr-1">
+            <p className="text-base sm:text-xl text-gray-800 mb-6 leading-relaxed font-medium">
               {quizData[currentQuestion].question}
             </p>
 
-            <div className="space-y-4 max-w-2xl">
+            <div className="space-y-3">
               {quizData[currentQuestion].options.map((option, idx) => (
                 <label 
                   key={idx} 
-                  className={`flex items-center p-5 border rounded-xl cursor-pointer transition-all ${
+                  className={`flex items-start sm:items-center p-3 sm:p-4 border rounded-xl cursor-pointer transition-all ${
                     selectedAnswers[currentQuestion] === option 
                     ? 'border-indigo-600 bg-indigo-50 shadow-md ring-1 ring-indigo-600' 
                     : 'border-gray-200 hover:border-indigo-300 hover:bg-gray-50'
@@ -462,26 +482,27 @@ export default function App() {
                     value={option}
                     checked={selectedAnswers[currentQuestion] === option}
                     onChange={() => handleOptionSelect(option)}
-                    className="w-5 h-5 text-indigo-600 border-gray-300 focus:ring-indigo-500"
+                    className="mt-1 sm:mt-0 w-4 h-4 text-indigo-600 border-gray-300 focus:ring-indigo-500 shrink-0"
                   />
-                  <span className="ml-4 text-gray-700 font-medium text-lg">{option}</span>
+                  <span className="ml-3 text-gray-700 font-medium text-sm sm:text-base">{option}</span>
                 </label>
               ))}
             </div>
           </div>
 
-          <div className="mt-8 pt-6 border-t flex justify-between items-center">
+          {/* Navigation Footer */}
+          <div className="mt-6 pt-4 border-t flex justify-between items-center">
             <button
               onClick={() => setCurrentQuestion(prev => Math.max(0, prev - 1))}
               disabled={currentQuestion === 0}
-              className="px-6 py-3 rounded-lg font-semibold border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg font-semibold border border-gray-300 text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-sm transition-colors"
             >
-              &larr; Previous
+              &larr; Prev
             </button>
             <button
               onClick={() => setCurrentQuestion(prev => Math.min(quizData.length - 1, prev + 1))}
               disabled={currentQuestion === quizData.length - 1}
-              className="px-6 py-3 rounded-lg font-semibold bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed shadow-md transition-colors"
+              className="px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg font-semibold bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed shadow-md text-sm transition-colors"
             >
               Next &rarr;
             </button>
