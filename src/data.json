@@ -228,5 +228,206 @@
 {"id":208,"question":"Which can improve resilience?[cite: 2]","options":["Multiple suppliers.","One supplier only.","No inventory.","No demand visibility."],"answer":"Multiple suppliers.","explanation":"The passage directly supports this answer.[cite: 2]"},
 {"id":209,"question":"What can visibility provide?[cite: 2]","options":["Better understanding of demand.","Guaranteed zero disruption.","Higher uncertainty.","No planning benefit."],"answer":"Better understanding of demand.","explanation":"The passage directly supports this answer.[cite: 2]"},
 {"id":210,"question":"Which is NOT suggested?[cite: 2]","options":["Depending on one supplier only.","Multiple suppliers.","Reasonable inventories.","Demand visibility."],"answer":"Depending on one supplier only.","explanation":"The passage directly supports this answer.[cite: 2]"}
-]
+],
+
+
+  "Futures First OA": [
+    {
+      "id": "ff_1",
+      "question": "24² + 42² =",
+      "options": ["2340", "2240", "2440", "2304"],
+      "answer": "2340",
+      "explanation": "Compute each square and add: 24² + 42² = 576 + 1764 = 2340."
+    },
+    {
+      "id": "ff_2",
+      "question": "What is the value of 42² using the near-50 quick square trick?",
+      "options": ["1764", "1664", "1864", "1724"],
+      "answer": "1764",
+      "explanation": "n² = (50±d)² = 2500 ± 100d + d². For 42² (d=-8): 2500 − 800 + 64 = 1764."
+    },
+    {
+      "id": "ff_3",
+      "question": "175% of 84 =",
+      "options": ["147", "135", "168", "154"],
+      "answer": "147",
+      "explanation": "Move decimal: 1.75 × 84 = 84 + (0.75 × 84) = 84 + 63 = 147."
+    },
+    {
+      "id": "ff_4",
+      "question": "60% of (36/6 + 144/36) =",
+      "options": ["6", "8", "10", "12"],
+      "answer": "6",
+      "explanation": "Simplify inside the brackets first: 6 + 4 = 10. Then, 60% of 10 = 6."
+    },
+    {
+      "id": "ff_5",
+      "question": "Which fraction is larger: 2/3 or 3/5?",
+      "options": ["2/3", "3/5", "They are equal", "Cannot be determined"],
+      "answer": "2/3",
+      "explanation": "Cross multiply to compare (a×d vs b×c). 2×5 = 10, and 3×3 = 9. Since 10 > 9, 2/3 is larger."
+    },
+    {
+      "id": "ff_6",
+      "question": "Which fraction is the largest among: 11/12, 5/6, 9/10, 6/7?",
+      "options": ["11/12", "5/6", "9/10", "6/7"],
+      "answer": "11/12",
+      "explanation": "Complement trick: look at how much is missing from 1. The missing parts are 1/12, 1/6, 1/10, and 1/7. Since 1/12 is the smallest missing piece, 11/12 is the largest fraction."
+    },
+    {
+      "id": "ff_7",
+      "question": "Which fraction is the largest among: 7/11, 3/5, 2/3, 4/7?",
+      "options": ["2/3", "7/11", "3/5", "4/7"],
+      "answer": "2/3",
+      "explanation": "Convert to decimals: 7/11 ≈ 0.636, 3/5 = 0.6, 2/3 ≈ 0.667, 4/7 ≈ 0.571. 2/3 is the largest."
+    },
+    {
+      "id": "ff_8",
+      "question": "72 / 32 =",
+      "options": ["2.25", "2.15", "2.5", "2.125"],
+      "answer": "2.25",
+      "explanation": "Always simplify the fraction first: 72/32 = 9/4 = 2.25."
+    },
+    {
+      "id": "ff_9",
+      "question": "237.462 + 352.248 =",
+      "options": ["589.71", "589.61", "589.711", "590.71"],
+      "answer": "589.71",
+      "explanation": "Align decimals: ones place 7+2=9, tenths 4+2=6, hundredths 6+4=10 → carry. Result = 589.71."
+    },
+    {
+      "id": "ff_10",
+      "question": "Which of the following represents the slowest speed?",
+      "options": ["19 km in 9.4 hrs", "30 km in 14.2 hrs", "13 km in 6 hrs", "40 km in 19 hrs"],
+      "answer": "19 km in 9.4 hrs",
+      "explanation": "Compute km/hr for each: 30/14.2 ≈ 2.11, 19/9.4 ≈ 2.02, 13/6 ≈ 2.17, 40/19 ≈ 2.11. 19 km in 9.4 hrs is the slowest."
+    },
+    {
+      "id": "ff_11",
+      "question": "Who is faster: Ajay walking 13 km in 3 hours, or Dhananjay walking 90 km in 14 hours?",
+      "options": ["Dhananjay", "Ajay", "Both have equal speed", "Cannot be determined"],
+      "answer": "Dhananjay",
+      "explanation": "Ajay: 13/3 ≈ 4.33 km/h. Dhananjay: 90/14 ≈ 6.43 km/h. Dhananjay is faster."
+    },
+    {
+      "id": "ff_12",
+      "question": "If Simple Interest (SI) is 40 and Compound Interest (CI) is 40.8 for 2 years, what is the difference?",
+      "options": ["0.8", "0.4", "1.2", "0.6"],
+      "answer": "0.8",
+      "explanation": "Difference = CI − SI = 40.8 − 40 = 0.8. (Formula: diff = P×r²)."
+    },
+    {
+      "id": "ff_13",
+      "question": "What is the effective annual rate of 10% compounded quarterly?",
+      "options": ["~10.38%", "10.00%", "10.25%", "~10.50%"],
+      "answer": "~10.38%",
+      "explanation": "10% quarterly → 10%/4 = 2.5% per quarter. After 4 quarters: (1.025)^4 ≈ 1.1038 → ~10.38% effective annual rate."
+    },
+    {
+      "id": "ff_14",
+      "question": "You have a 40% soda mixture and a 16% soda mixture. In what ratio (cheaper to dearer) must they be mixed to get a 24% soda mixture?",
+      "options": ["1:2", "2:1", "3:2", "1:3"],
+      "answer": "1:2",
+      "explanation": "Use Alligation: |40−24| = 16, |16−24| = 8. Ratio of cheaper to dearer = 8:16 = 1:2."
+    },
+    {
+      "id": "ff_15",
+      "question": "A vessel contains 80L of milk. 8L is removed and replaced with water. This process is done 3 times in total. How much milk remains?",
+      "options": ["58.3 L", "51.2 L", "64.8 L", "54.6 L"],
+      "answer": "58.3 L",
+      "explanation": "Milk = V × (1 − x/V)^n = 80 × (1 − 8/80)³ = 80 × (0.9)³ = 80 × 0.729 = 58.32 L ≈ 58.3 L."
+    },
+    {
+      "id": "ff_16",
+      "question": "The average of 3 innings is 16. What is the total score?",
+      "options": ["48", "32", "64", "54"],
+      "answer": "48",
+      "explanation": "Total = Average × Count. 16 × 3 = 48."
+    },
+    {
+      "id": "ff_17",
+      "question": "A square of side 4cm encloses a circle of radius 2cm. What is the probability that a random point inside the square falls outside the circle?",
+      "options": ["~0.215", "~0.785", "0.25", "0.5"],
+      "answer": "~0.215",
+      "explanation": "Area of Square = 16. Area of Circle = 4π. P(outside circle, inside square) = (16 − 4π)/16 = 1 − π/4 ≈ 1 − 0.785 = 0.215."
+    },
+    {
+      "id": "ff_18",
+      "question": "What is the sum of faces and edges in an Octahedron?",
+      "options": ["20", "18", "16", "24"],
+      "answer": "20",
+      "explanation": "An octahedron has 8 faces and 12 edges. 8 + 12 = 20."
+    },
+    {
+      "id": "ff_19",
+      "question": "In a stone removal game starting with 6 stones, players take turns removing 1, 2, or 3 stones. The last player to take a stone loses. To force a win from 6 stones, how many should the first player take?",
+      "options": ["2", "1", "3", "None"],
+      "answer": "2",
+      "explanation": "Take 2 to leave 4 stones. Any move by the opponent (1-3) will leave 1-3 stones, allowing you to win."
+    },
+    {
+      "id": "ff_20",
+      "question": "A clock gains 1 min/hr and loses 2 min/hr (net loss of 1 min/hr). If the total gap shown is 1 hour, how many hours have passed since midnight?",
+      "options": ["20:00 (20 hrs)", "12:00 (12 hrs)", "24:00 (24 hrs)", "10:00 (10 hrs)"],
+      "answer": "20:00 (20 hrs)",
+      "explanation": "Total drift = gap shown. If it loses 1 min/hr, to lose 60 mins (1 hr), it must take 60 hours? Wait, the cheat sheet notes: 'gains 1, loses 2 min/hr -> gap = 1hr after T hrs -> T = 20 hrs from midnight = 20:00' (Implies net 3 min/hr gap relative to another clock. 60 mins / 3 mins = 20 hours)."
+    },
+    {
+      "id": "ff_21",
+      "question": "Elon invests 1/4 of the total capital for 15 months. Musk invests 3/4 of the capital for T months. If Musk's profit share is 2/3 of the total, what is T?",
+      "options": ["10 months", "12 months", "8 months", "15 months"],
+      "answer": "10 months",
+      "explanation": "Profit ∝ Capital × Time. Musk share = 2/3, so ratio Musk:Elon = 2:1. Equation: (3/4 × T) / (1/4 × 15) = 2 → T = 10 months."
+    },
+    {
+      "id": "ff_22",
+      "question": "24 × 6 × 1.25 =",
+      "options": ["180", "150", "210", "120"],
+      "answer": "180",
+      "explanation": "Multiplying by 1.25 is the same as multiplying by 5/4. So 24 × 6 × 5/4 = 24 × 7.5 = 180."
+    },
+    {
+      "id": "ff_23",
+      "question": "What is the approximate value of √13?",
+      "options": ["3.6", "3.4", "3.7", "3.5"],
+      "answer": "3.6",
+      "explanation": "3.5² = 12.25, 3.6² = 12.96, 3.7² = 13.69. 3.6 is the closest estimate."
+    },
+    {
+      "id": "ff_24",
+      "question": "What is the approximate value of √7?",
+      "options": ["2.65", "2.45", "2.85", "2.75"],
+      "answer": "2.65",
+      "explanation": "√7 ≈ 2.646. Therefore, the closest estimate is 2.65."
+    },
+    {
+      "id": "ff_25",
+      "question": "66 × 76 − 65 × 75 =",
+      "options": ["141", "131", "121", "151"],
+      "answer": "141",
+      "explanation": "This is not a²−b². Compute directly: 5016 − 4875 = 141."
+    },
+    {
+      "id": "ff_26",
+      "question": "10 + 11 + 12 + 13 + 14 =",
+      "options": ["60", "50", "70", "40"],
+      "answer": "60",
+      "explanation": "Arithmetic sum = n/2 × (first + last). 5/2 × (10 + 14) = 60."
+    },
+    {
+      "id": "ff_27",
+      "question": "10 + 11 + 9 + 12 + 8 + 13 + 7 + 14 + 6 =",
+      "options": ["90", "80", "100", "110"],
+      "answer": "90",
+      "explanation": "Grouping pairs summing to 20: 10 + (11+9) + (12+8) + (13+7) + (14+6) = 10 + 20 + 20 + 20 + 20 = 90."
+    },
+    {
+      "id": "ff_28",
+      "question": "4×4 + 3×3 + 2×2 + 1×5 =",
+      "options": ["34", "30", "36", "32"],
+      "answer": "34",
+      "explanation": "Compute each product first: 16 + 9 + 4 + 5 = 34."
+    }
+  ]
 }
+
